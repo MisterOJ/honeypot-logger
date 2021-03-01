@@ -1,0 +1,65 @@
+version: "3.3"
+services:
+  honeypot:
+    build: ./honeydb
+    ports:
+      - "80:80"
+      - "443:443"
+      - "22:22"
+      - "3306:3306"
+      - "6379:6379"
+      - "23:23"
+      - "3389:3389"
+      - "9200:9200"
+    env_file:
+      - ./honeydb/honeydb-agent.env
+    volumes:
+    - logs:/var/log
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - logs:/var/log
+  http-decoder:
+    build: ./decoder
+    environment: 
+    - LOG_FILE=/var/log/honeydb/http.log
+    - DECODED_LOG_FILE=/var/log/honeydb/http_decoded.log
+    volumes:
+    - logs:/var/log
+  redis-decoder:
+    build: ./decoder
+    environment: 
+    - LOG_FILE=/var/log/honeydb/redis.log
+    - DECODED_LOG_FILE=/var/log/honeydb/redis_decoded.log
+    volumes:
+    - logs:/var/log
+  mysql-decoder:
+    build: ./decoder
+    environment: 
+    - LOG_FILE=/var/log/honeydb/mysql.log
+    - DECODED_LOG_FILE=/var/log/honeydb/mysql_decoded.log
+    volumes:
+    - logs:/var/log
+  ssh-decoder:
+    build: ./decoder
+    environment: 
+    - LOG_FILE=/var/log/honeydb/ssh.log
+    - DECODED_LOG_FILE=/var/log/honeydb/ssh_decoded.log
+    volumes:
+    - logs:/var/log
+  rdp-decoder:
+    build: ./decoder
+    environment: 
+    - LOG_FILE=/var/log/honeydb/rdp.log
+    - DECODED_LOG_FILE=/var/log/honeydb/rdp_decoded.log
+    volumes:
+    - logs:/var/log
+  elastic-decoder:
+    build: ./decoder
+    environment: 
+    - LOG_FILE=/var/log/honeydb/elasticsearch.log
+    - DECODED_LOG_FILE=/var/log/honeydb/elasticsearch_decoded.log
+    volumes:
+    - logs:/var/log
+volumes:
+  logs:
