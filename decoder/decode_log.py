@@ -25,6 +25,10 @@ while True:
             if len(decodedData) > 2000:
                 continue
             jsonObject["data"] = decodedData
+
+            # Rename 'remote_host' field
+            jsonObject["host"] = jsonObject.pop('remote_host')
+
             stringObject = json.dumps(jsonObject)
             with open(decodedLogFileName, "a") as http_decoded:
                 http_decoded.write(stringObject)
