@@ -4,6 +4,9 @@ WORKDIR /decoder
 
 RUN apt-get update
 RUN apt-get -y install python3-pip
+RUN apt-get -y install build-essential
+RUN apt-get -y install libgeoip-dev
+RUN apt-get -y install libmaxminddb-dev
 
 # Add necessary files
 COPY . .
