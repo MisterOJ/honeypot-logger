@@ -19,6 +19,9 @@ services:
     build: ./fluentd
     volumes:
       - ./logs:/var/log/honeydb
+    ports:
+      - "5142:5142"
+      - "5142:5142/udp"
   http-decoder:
     build: ./decoder
     environment: 
