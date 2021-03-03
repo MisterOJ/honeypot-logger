@@ -20,8 +20,7 @@ services:
     volumes:
       - ./logs:/var/log/honeydb
     ports:
-      - "5142:5142"
-      - "5142:5142/udp"
+      - 24224:24224
   http-decoder:
     build: ./decoder
     environment: 
