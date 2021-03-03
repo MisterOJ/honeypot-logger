@@ -15,7 +15,6 @@ RUN apt update && \
     apt autoremove -y && \
     apt clean &&  rm -rf /var/lib/apt/lists/*
 
-RUN chown -R fluent-honey:1000 /var/log
 RUN chmod +x /home/fluent-honey/entrypoint.sh
 USER fluent-honey
 ENTRYPOINT [ "./entrypoint.sh" ]
