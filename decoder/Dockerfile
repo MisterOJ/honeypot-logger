@@ -1,4 +1,5 @@
 FROM python:3
+RUN groupadd -g 1000 logs
 RUN useradd --create-home --shell /bin/bash --groups 1000 decoder
 WORKDIR /home/decoder
 

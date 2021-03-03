@@ -1,4 +1,5 @@
 FROM ubuntu:18.04
+RUN groupadd -g 1000 logs
 RUN useradd --create-home --shell /bin/bash --groups 1000 honeydb
 WORKDIR /home/honeydb
 

@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-
+RUN groupadd -g 1000 logs
 RUN useradd --create-home --shell /bin/bash  --groups 1000 fluent-honey
 RUN chown -R fluent-honey.fluent-honey /home/fluent-honey
 
