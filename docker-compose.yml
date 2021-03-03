@@ -14,52 +14,52 @@ services:
     env_file:
       - ./honeydb/honeydb-agent.env
     volumes:
-    - logs:/var/log/honeydb
+    - ./logs:/var/log/honeydb
   fluentd:
     build: ./fluentd
     volumes:
-      - logs:/var/log/honeydb
+      - ./logs:/var/log/honeydb
   http-decoder:
     build: ./decoder
     environment: 
     - LOG_FILE=/var/log/honeydb/http.log
     - DECODED_LOG_FILE=/var/log/honeydb/http_decoded.log
     volumes:
-    - logs:/var/log/honeydb
+    - ./logs:/var/log/honeydb
   redis-decoder:
     build: ./decoder
     environment: 
     - LOG_FILE=/var/log/honeydb/redis.log
     - DECODED_LOG_FILE=/var/log/honeydb/redis_decoded.log
     volumes:
-    - logs:/var/log/honeydb
+    - ./logs:/var/log/honeydb
   mysql-decoder:
     build: ./decoder
     environment: 
     - LOG_FILE=/var/log/honeydb/mysql.log
     - DECODED_LOG_FILE=/var/log/honeydb/mysql_decoded.log
     volumes:
-    - logs:/var/log/honeydb
+    - ./logs:/var/log/honeydb
   ssh-decoder:
     build: ./decoder
     environment: 
     - LOG_FILE=/var/log/honeydb/ssh.log
     - DECODED_LOG_FILE=/var/log/honeydb/ssh_decoded.log
     volumes:
-    - logs:/var/log/honeydb
+    - ./logs:/var/log/honeydb
   rdp-decoder:
     build: ./decoder
     environment: 
     - LOG_FILE=/var/log/honeydb/rdp.log
     - DECODED_LOG_FILE=/var/log/honeydb/rdp_decoded.log
     volumes:
-    - logs:/var/log/honeydb
+    - ./logs:/var/log/honeydb
   elastic-decoder:
     build: ./decoder
     environment: 
     - LOG_FILE=/var/log/honeydb/elasticsearch.log
     - DECODED_LOG_FILE=/var/log/honeydb/elasticsearch_decoded.log
     volumes:
-    - logs:/var/log/honeydb
+    - ./logs:/var/log/honeydb
 volumes:
   logs:
