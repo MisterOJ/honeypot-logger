@@ -1,5 +1,9 @@
 FROM ubuntu:20.04
-WORKDIR /fluent-honey
+
+RUN useradd --create-home --shell /bin/bash fluent-honey
+RUN chown -R fluent-honey.fluent-honey /home/fluent-honey
+
+WORKDIR /home/fluent-honey
 
 COPY . .
 
@@ -11,5 +15,6 @@ RUN apt update && \
     apt autoremove -y && \
     apt clean &&  rm -rf /var/lib/apt/lists/*
 
-RUN chmod +x /fluent-honey/entrypoint.sh
+RUN chmod +x /home/fluent-honey/entrypoint.sh
+USER fluent-honey
 ENTRYPOINT [ "./entrypoint.sh" ]
