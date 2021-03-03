@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-RUN useradd --create-home --shell /bin/bash --gid 1001 --groups 1000 honeydb
+RUN useradd --create-home --shell /bin/bash --groups 1000 honeydb
 WORKDIR /home/honeydb
 
 RUN apt update && apt install -y curl apt-transport-https vim

@@ -1,5 +1,5 @@
 FROM python:3
-RUN useradd --create-home --shell /bin/bash --gid 1001 --groups 1000 decoder
+RUN useradd --create-home --shell /bin/bash --groups 1000 decoder
 WORKDIR /home/decoder
 
 RUN apt-get update
