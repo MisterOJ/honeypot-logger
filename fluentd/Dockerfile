@@ -5,7 +5,8 @@ RUN chown -R fluent-honey.fluent-honey /home/fluent-honey
 
 WORKDIR /home/fluent-honey
 
-COPY . .
+COPY Gemfile .
+COPY entrypoint.sh .
 
 RUN apt update && \ 
     apt install -y vim libgeoip-dev autoconf libmaxminddb-dev curl sudo ruby-dev build-essential && \
@@ -15,6 +16,10 @@ RUN apt update && \
     apt autoremove -y && \
     apt clean &&  rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /etc/fluentd
+COPY fluent.conf /etc/fluentd/fluent.conf
+
 RUN chmod +x /home/fluent-honey/entrypoint.sh
+
 USER fluent-honey
 ENTRYPOINT [ "./entrypoint.sh" ]

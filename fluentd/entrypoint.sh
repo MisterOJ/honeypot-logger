@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 set -e
-fluentd -c fluent.conf
+fluentd -c /etc/fluentd/fluent.conf
