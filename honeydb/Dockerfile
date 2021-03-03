@@ -1,7 +1,5 @@
 FROM ubuntu:18.04
-RUN groupadd -g 1000 logs
-RUN useradd --create-home --shell /bin/bash --groups 1000 honeydb
-WORKDIR /home/honeydb
+WORKDIR /honeydb
 
 RUN apt update && apt install -y curl apt-transport-https vim
 RUN curl -1sLf \
@@ -13,6 +11,5 @@ COPY ./agent.conf /etc/honeydb/agent.conf
 COPY ./entrypoint.sh .
 
 # RUN touch /honeydb/log/auth.log
-RUN chmod +x /home/honeydb/entrypoint.sh
-USER honeydb
+RUN chmod +x /honeydb/entrypoint.sh
 ENTRYPOINT [ "sh", "./entrypoint.sh" ]
